@@ -11,14 +11,14 @@ def draw_bbox(frame, res):
     cv2.rectangle(frame, (x, y), (x + w, y + h), color, 3)
 
 PES = [PoseEstimation(min_pose_detect_conf=0.8, min_pose_track_conf=0.5) for _ in range(5)]
-# cap = cv2.VideoCapture(0)
-# cap.set(3,1280)
-# cap.set(4,720)
+cap = cv2.VideoCapture(0)
+cap.set(3,1280)
+cap.set(4,720)
 
 def main():
 
   while True:
-    # ret, frame = cap.read()
+    ret, frame = cap.read()
     res = dict()
 
     try:

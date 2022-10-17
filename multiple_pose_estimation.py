@@ -165,9 +165,20 @@ class PoseEstimation:
             left_knee = self.get_exact_pose_coords(25)
             right_knee = self.get_exact_pose_coords(26)
             
-            #from the side
-            if 100 >= self.get_pose_joint_angle((11,23,25)) >= 50 or 100 >= self.get_pose_joint_angle((12,24,26)) >= 50:
+            #from the side left
+            if abs(left_knee[0]-left_hip[0]) >=10 and (100 >= self.get_pose_joint_angle((11,23,25)) >= 50 or 100 >= self.get_pose_joint_angle((12,24,26)) >= 50):
                 if print_result:
                     print("Sitting Down", self.get_pose_coords((23)[:-1],(24)[:-1]))
+            #right
+            if abs(right_knee[0]-right_hip[0]) >=10 and (100 >= self.get_pose_joint_angle((11,23,25)) >= 50 or 100 >= self.get_pose_joint_angle((12,24,26)) >= 50):
+                if print_result:
+                    print("Sitting Down", self.get_pose_coords((23)[:-1],(24)[:-1]))
+
+            #from the front
+            elif (abs(right_knee[0]-right_hip[0]) < 10 or abs(left_knee[0]-left_hip[0]) < 10) and \
+            (180 >= self.get_pose_joint_angle((11,23,25)) >= 50 or 100 >= self.get_pose_joint_angle((12,24,26)) >= 50):
+                if print_result:
+                    print("Sitting Down", self.get_pose_coords((23)[:-1],(24)[:-1]))
+
 
                 return sit_list
